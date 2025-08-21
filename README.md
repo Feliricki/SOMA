@@ -39,7 +39,7 @@
 
 ### Demonstration
 
-[![Project Demo](https://github.com/Feliricki/SOMA/tree/main/gif/demonstration.gif?raw=true)]
+![Project Demo](/gif/demonstration.gif)
 
 ## Soma Capital Technical Assessment
 
