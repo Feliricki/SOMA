@@ -20,22 +20,22 @@
 
 ### Part 3: Task Dependency
 
-1. I started off by designing and then applying what I felt was the appropriate migration to handle task dependencies. That being a self-join relationship where the `parentId`s are optionally set to another todo within the same table
-2. Then I got to work on setting up the backend endpoint which now handles `PUT` requests for updating certain todo tasks. Our primary usage will be to set the `parentId`
-3. My next objective, involved looking for a suitable visualization library to handle DAGs (directed acyclic graphs). I ended up chosing `dagra` for the graph data structures and layout calculations and `reactflow` for the visualizations themselves
+1. I started by designing and then applying what I felt was the appropriate migration to handle task dependencies. That being a self-join relationship where the `parentId`s are optionally set to another todo within the same table
+2. Then I got to work on setting up the backend endpoint, which now handles `PUT` requests for updating certain todo tasks. Our primary usage will be to set the `parentId`
+3. My next objective involved looking for a suitable visualization library to handle DAGs (directed acyclic graphs). I ended up choosing `dagra` for the graph data structures and layout calculations, and `reactflow` for the visualizations themselves
 4. I then created a separate route for each `todo` where the user would have the option to observe the graph, set dependent todos, get its earliest start date, and observe the critical path
-4. After much reading and debugging, I mananged to get the visualizations up and running (only the nodes at this point) using a memoized function to avoid rerenders and lag
-6. The todo objects are used to create a graph object complete with Nodes and Edges. The nodes corresponding to each todo and the edges to the parent-child connection between each todo (if present)
-7. The critical path is calculated by finding root nodes (nodes with no parents todo), and then finding the farthest node, from each root node using dfs for graph traversal
+4. After much reading and debugging, I managed to get the visualizations up and running (only the nodes at this point) using a memoized function to avoid rerenders and lag
+6. The todo objects are used to create a graph object, complete with Nodes and Edges. The nodes corresponding to each todo and the edges to the parent-child connection between each todo (if present)
+7. The critical path is calculated by finding root nodes (nodes with no parents todo), and then finding the farthest node from each root node using dfs for graph traversal
 8. The earliest start date is calculated during this process, and the critical path is animated
-9. On each todo's page, one can add a dependent todo through the usage of the input field
+9. On each todo's page, one can add a dependent todo through the use of the input field
 10. Simply begin the title of the todo you want to add as a dependent todo, and the autocomplete dropdown should open
-11. Click on the dropdown option you want, and afterwards the page should reload and the task should appears as a dependent task in the graph visualizations if it passed validations
+11. Click on the dropdown option you want, and afterwards, the page should reload, and the task should appear as a dependent task in the graph visualizations if it passed validations
 12. The validation itself is somewhat complex. Checking for circular dependencies involved creating a topological ordering of the graph corresponding to the todos and verifying that the final ordering has the same length as the original list
-13. After the validation passes, a `PUT` request is sent to our aforementioned API endpoint, and if succesful the page is reloaded and updated
+13. After the validation passes, a `PUT` request is sent to our aforementioned API endpoint, and if successful, the page is reloaded and updated
 14. If the validation fails or the fetch request fails, then nothing changes
 
-- Given more time, I would probably split up the visualization logic and the `todo:id` page into seperate files and clean up the statement management
+- Given more time, I would probably split up the visualization logic and the `todo:id` page into separate files and clean up the statement management
 
 ### Demonstration
 
@@ -52,7 +52,7 @@ To begin, clone this repository to your local machine.
 
 ## Development
 
-This is a [NextJS](https://nextjs.org) app, with a SQLite based backend, intended to be run with the LTS version of Node.
+This is a [NextJS](https://nextjs.org) app, with a SQLite-based backend, intended to be run with the LTS version of Node.
 
 To run the development server:
 
